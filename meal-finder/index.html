@@ -3,32 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meal Finder</title>
-    <!-- FAVICON -->
-    <link rel="icon" type="image/png" href="#" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
       rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-      crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Meal Finder</title>
   </head>
   <body>
     <div class="container">
       <h1>Meal Finder</h1>
       <div class="flex">
-        <form class="flex" id="submit-form">
+        <form class="flex" id="submit">
           <input
             type="text"
-            id="search-input"
-            placeholder="Search for meals by keywords..."
+            id="search"
+            placeholder="Search for meals or keywords"
           />
-          <button class="search-btn" id="search-btn" type="submit">
+          <button class="search-btn" type="submit">
             <i class="fas fa-search"></i>
           </button>
         </form>
-        <button class="random-btn" id="random-btn">
+        <button class="random-btn" id="random">
           <i class="fas fa-random"></i>
         </button>
       </div>
@@ -38,6 +35,6 @@
       <div id="single-meal"></div>
     </div>
 
-    <script src="./app.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
