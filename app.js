@@ -66,6 +66,22 @@ function getMealByID(mealID) {
     });
 }
 
+//fetch random meala from API
+
+function getRandomMeal() {
+  //clear meals and heading
+  mealsEl.innerHTML = "";
+  resultHeadingEl.innerHTML = "";
+  fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+    .then((res) => res.json())
+    .then((randomData) => {
+      // console.log(randomData);
+      const meal = randomData.meals[0];
+
+      addMealToDOM(meal);
+    });
+}
+
 //add recipe to DOM
 function addMealToDOM(meal) {
   const ingredients = [];
@@ -82,7 +98,7 @@ function addMealToDOM(meal) {
 
   //
   single_mealEl.innerHTML = `
-  <div class="sinigle-meal"
+  <div class="single-meal">
     <h2>${meal.strMeal}</h2>
     <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
     <div class="single-meal-info"> 
@@ -105,6 +121,8 @@ function addMealToDOM(meal) {
 //add event listeners
 //action to complete when the form is submitted
 submitForm.addEventListener("submit", searchMeal);
+randomBtn.addEventListener("click", getRandomMeal);
+
 mealsEl.addEventListener("click", (e) => {
   const mealInfo = e.path.find((item) => {
     if (item.classList) {
