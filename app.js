@@ -32,8 +32,9 @@ function searchMeal(e) {
         if (mealData.meals === null) {
           resultHeadingEl.innerHTML = `<p>That search yielded no results.  Please try again!</p>`;
         } else {
-          mealsEl.innerHTML = mealData.meals.map(
-            (meal) => `
+          mealsEl.innerHTML = mealData.meals
+            .map(
+              (meal) => `
             <div class="meal">
             <img src="${meal.strMealThumb}" alt="${meal.strMeal}"/>
             <div class="meal-info" data-mealID="${meal.idMeal}">
@@ -42,17 +43,79 @@ function searchMeal(e) {
             </div>
             </div>
             `
-          ).join("")
+            )
+            .join("");
         }
       });
-      //clear search text
-      searchEl.value="";
-      searchEl.placeholder = "Search for meals by keywords..."
+    //clear search text
+    searchEl.value = "";
+    searchEl.placeholder = "Search for meals by keywords...";
   } else {
     alert("Please enter search terms");
   }
 }
 
-//add event listener
+//fetch meal by ID
+function getMealByID(mealID) {
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`)
+    .then((res) => res.json())
+    .then((recipeData) => {
+      const meal = recipeData.meals[0];
+
+      addMealToDOM(meal);
+    });
+}
+
+//add recipe to DOM
+function addMealToDOM(meal) {
+  const ingredients = [];
+
+  for (let i = 1; i <= 20; i++) {
+    if (meal[`strIngredient${i}`]) {
+      ingredients.push(
+        `${meal[`strMeasure${i}`]} - ${meal[`strIngredient${i}`]}`
+      );
+    } else {
+      break;
+    }
+  }
+
+  //
+  single_mealEl.innerHTML = `
+  <div class="sinigle-meal"
+    <h2>${meal.strMeal}</h2>
+    <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+    <div class="single-meal-info"> 
+         ${meal.strCategory ? `<p>${meal.strCategory}</p>` : ""}
+         ${meal.strArea ? `<p>${meal.strArea}</p>` : ""}
+    </div>
+    <div class="main">
+         <p>${meal.strInstructions}</p>
+    <h3>Ingredients</h2>
+         <ul>
+            ${ingredients
+              .map((ingredient) => `<li>${ingredient}</li>`)
+              .join("")}
+        </ul>
+    </div>
+  </div>
+  `;
+}
+
+//add event listeners
 //action to complete when the form is submitted
 submitForm.addEventListener("submit", searchMeal);
+mealsEl.addEventListener("click", (e) => {
+  const mealInfo = e.path.find((item) => {
+    if (item.classList) {
+      return item.classList.contains("meal-info");
+    } else {
+      return false;
+    }
+  });
+
+  if (mealInfo) {
+    const mealID = mealInfo.getAttribute("data-mealid");
+    getMealByID(mealID);
+  }
+});
