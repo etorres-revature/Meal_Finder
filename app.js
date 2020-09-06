@@ -8,6 +8,7 @@ const searchEl = document.querySelector("#search-input"),
   mealsEl = document.querySelector("#meals"),
   resultHeadingEl = document.querySelector("#result-heading"),
   single_mealEl = document.querySelector("#single-meal");
+containerEl = document.querySelector("#container");
 
 //seach for meal and fetch from API
 function searchMeal(e) {
@@ -61,8 +62,25 @@ function searchMeal(e) {
     searchEl.placeholder = "Search for meals by keywords...";
     //else logic for what to do if there were no search terms entered
   } else {
-    alert("Please enter search terms");
+    //create div to contain error message
+    let errorDiv = document.createElement("div");
+    //add class of error-message for css styling
+    errorDiv.classList.add("error-message");
+    //insert innerHTML with the error message
+    errorDiv.innerHTML = "<p>Please enter search terms</p>";
+    //append to the div with class container
+    containerEl.appendChild(errorDiv);
+    //time interval to remove error message
+    setTimeout(clearErrorMessage, 5000);
   }
+}
+
+//remove error message
+function clearErrorMessage() {
+    //use vanilla JS to select item 
+    let errorMessage = document.querySelector(".error-message");
+    //remove from HTML
+    errorMessage.remove();
 }
 
 //fetch meal by ID
@@ -152,10 +170,10 @@ randomBtn.addEventListener("click", getRandomMeal);
 
 //get meal by id for selected meal returned from search
 mealsEl.addEventListener("click", (e) => {
-    //setting a variable mealinfo to see if the selected item has that class
+  //setting a variable mealinfo to see if the selected item has that class
   const mealInfo = e.path.find((item) => {
     if (item.classList) {
-        //meal-info dynamically added in search meal function
+      //meal-info dynamically added in search meal function
       return item.classList.contains("meal-info");
       //returning false if there is no class meal-info
     } else {

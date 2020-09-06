@@ -19,6 +19,16 @@ body {
   text-align: center;
 }
 
+.error-message {
+    height: 100px;
+    width: 55%;
+    color: darkslategrey;
+    background-color: goldenrod;
+    font-size: 25px;
+    font-weight: 850;
+    text-decoration: underline;
+}
+
 .flex {
   display: flex;
 }
