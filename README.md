@@ -1,16 +1,16 @@
 # [Meal Finder](https://etorres-revature.github.io/Meal_Finder/)
 
- With the [Meal Finder]((https://etorres-revature.github.io/Meal_Finder/) users can use the [Meal DB API](https://www.themealdb.com/api.php) to search for recipes.
+ With the [Meal Finder](https://etorres-revature.github.io/Meal_Finder/) users can use the [Meal DB API](https://www.themealdb.com/api.php) to search for recipes.
 
  ![MEAL FINDER home](./assets/images/screenshots/meal-finder.png)
 
  Once a search term is entered, the Meal Finder will make a fetch API call to get recipes for that particular search term ("roast" search pictured below...)
 
- ![MEAL FINDER roast search](.assets/images/screenshots/meal-finder-roast.png)
+ ![MEAL FINDER roast search](./assets/images/screenshots/meal-finder-roast.png)
 
  Each returned thumbnail can be clicked to get that particular recipe.  Or, there is a button that will generate a random recipe (as shown below...)
 
- ![NEAL FINDR random recipe](./assets/images/screenshots/meal-fider-random.png)
+ ![NEAL FINDR random recipe](./assets/images/screenshots/meal-finder-random.png)
 
 Please enjoy the [Meal Finder](https://etorres-revature.github.io/Meal_Finder/).  E-mail me with any feature update suggestions.
 
